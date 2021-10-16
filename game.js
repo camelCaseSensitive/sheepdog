@@ -24,7 +24,7 @@ class Game {
     }
     titleState() {
       push()
-      background(0)
+      background(143, 194, 89);
       textAlign(CENTER)
       textSize(20)
       fill(255)
@@ -35,18 +35,10 @@ class Game {
       else if (!keyIsDown(32)) this.keyCleared = true
     }
     initGame() {
-      this.timeLeft = 60
-      this.player.score = 0
-      this.player.location = createVector(width / 2, height / 2)
-      this.player.speed = createVector()
-      this.player.score = 0
-      this.target.location = this.randomLocation
-      this.runOnce = true
+      
     }
     gameState() {
       this.draw()
-      this.collision()
-      this.info()
     }
     endState() {
       push()
@@ -62,30 +54,9 @@ class Game {
       else if (!keyIsDown(32)) this.keyCleared = true
     }
     draw() {
-      image(bg, width / 2, height / 2, width, height)
+      background(143, 194, 89); // Luscious green grass!
       this.entities.forEach((entity) => {
         entity.update()
       })
-    }
-    collision() {
-      if (this.target.colliding(this.player)) {
-        while (this.target.colliding(this.player)) this.target.location = this.randomLocation
-        this.player.score++
-        sound.play()
-      }
-    }
-    info() {
-      fill("white")
-      text(this.player.score, 10, 20)
-      text(this.timeLeft, width - 20, 20)
-      if (frameCount % 60 === 0) this.timeLeft--
-      if (this.timeLeft < 0) {
-        this.stateResolve()
-      }
-    }
-    get randomLocation() {
-      let x = random(width)
-      let y = random(height)
-      return createVector(x, y)
     }
   }

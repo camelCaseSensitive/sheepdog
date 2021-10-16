@@ -5,3 +5,8 @@ html, body {
 canvas {
   display: block;
 }
+
+#game {
+  display: flex;
+  justify-content: center;
+}
